@@ -1,0 +1,147 @@
+/* ALL */
+body
+{
+    background-color: #d6d6cf;
+    transition: background-color 1s;
+    overflow: hidden;
+}
+
+/* CAROUSEL 3D */
+.cubeCarousel
+{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    perspective: 800px;
+    cursor: pointer;
+}
+
+.cubeCarousel *
+{
+    transform-style: preserve-3d;
+}
+
+.cubeCarousel.zPosFaceCubeIsActive { top: 0px;   left: 0px; perspective: none; }
+.cubeCarousel.yPosFaceCubeIsActive {             left: 0px; perspective: none; }
+.cubeCarousel.zNegFaceCubeIsActive { top: 100vh; left: 0px; perspective: none; }
+.cubeCarousel.yNegFaceCubeIsActive {             left: 0px; perspective: none; }
+
+.pivotX
+{
+    transition: transform cubic-bezier(0.6, 0.07, 0.17, 1) 1s;
+}
+
+.cubeCarousel .faceCarousel
+{
+    display: flex;
+    position: absolute;
+    top: -150px;
+    left: -150px;
+    width: 600px;
+    height: 300px;
+    background-size: cover;
+    background-position: center center;
+    font-size: 60px;
+    font-family: 'Italiana', serif;
+    text-transform: uppercase;
+    color: #ffffff;
+    justify-content: center;
+    align-items: center;
+    will-change: transform;
+    transition: background-image  0.3s ;
+    user-select: none;
+}
+
+.cubeCarousel .faceCarousel.zPos { transform:                 translateZ(150px); background-image: url(../images/0-home.png);}
+.cubeCarousel .faceCarousel.yPos { transform: rotateX(-90deg) translateZ(150px); background-image: url(../images/1-sakuras.png);}
+.cubeCarousel .faceCarousel.zNeg { transform: rotateX(180deg) translateZ(150px); background-image: url(../images/2-ginkgos.png);}
+.cubeCarousel .faceCarousel.yNeg { transform: rotateX(90deg)  translateZ(150px); background-image: url(../images/3-bambous.png);}
+
+.cubeCarousel .faceCarousel.zPos:hover { background-image: url(../images/0-homeHover.png);}
+.cubeCarousel .faceCarousel.yPos:hover { background-image: url(../images/1-sakurasHover.png);}
+.cubeCarousel .faceCarousel.zNeg:hover { background-image: url(../images/2-ginkgosHover.png);}
+.cubeCarousel .faceCarousel.yNeg:hover { background-image: url(../images/3-bambousHover.png);}
+
+.cubeCarousel .faceCarousel.zPosFaceIsActive { top: 0px; left: 0px; width: 100vw; height: 100vh; }
+.cubeCarousel .faceCarousel.yPosFaceIsActive { top: 0px; left: 0px; width: 100vw; height: 100vh; }
+.cubeCarousel .faceCarousel.zNegFaceIsActive { top: 0px; left: 0px; width: 100vw; height: 100vh; }
+.cubeCarousel .faceCarousel.yNegFaceIsActive {           left: 0px; width: 100vw; height: 100vh; }
+
+/* BUTTON SOUND EQUALIZER */
+.buttonSoundEqualizer
+{
+    position: absolute;
+    top: 40vh;
+    right: 15px;
+    display: flex;
+    width: 30px;
+    height: 80px;
+    cursor: pointer;
+}
+
+.buttonSoundEqualizer .soundBar
+{
+    --margin: 2px;
+    --duration: 1s;
+    flex-grow: 1;
+    height: 34%;
+    width: 42px;
+    margin-left: var(--margin);
+    margin-right: var(--margin);
+    background: #ffffff;
+    animation-name: buttonSoundEqualizer-soundBar-bounce;
+    animation-duration: var(--duration);
+    animation-iteration-count: infinite;
+    animation-timing-function: cubic-bezier(0, 0, 0, 1);
+    animation-play-state: paused;
+}
+
+.buttonSoundEqualizer .soundBar.soundIsActive
+{
+    animation-play-state: running;
+}
+
+.buttonSoundEqualizer .soundBar:nth-child(1)  { animation-delay: calc(var(--duration) * 0.4); }
+.buttonSoundEqualizer .soundBar:nth-child(2)  { animation-delay: calc(var(--duration) * 0.9); }
+.buttonSoundEqualizer .soundBar:nth-child(3)  { animation-delay: calc(var(--duration) * 0.3); }
+.buttonSoundEqualizer .soundBar:nth-child(4)  { animation-delay: calc(var(--duration) * 0.0); }
+
+@keyframes buttonSoundEqualizer-soundBar-bounce
+{
+    from { transform: scaleY(1); }
+    to   { transform: scaleY(0.2); }
+}
+
+/* NAVIGATION BAR */
+.navigationBar
+{
+    position: absolute;
+    display: flex;
+    justify-content: space-around;
+    flex-direction: column;
+    top: calc(50vh - 30px);
+    right: 20px;
+    height: 150px;
+    width: 20px;
+}
+
+.navPoints
+{
+    position: relative;
+    height: 20px;
+    width: 20px;
+    background-color: #424242;
+    border-radius: 50%;
+    transition: background-color 0.5s;
+    cursor: pointer;
+}
+
+.navPoints:hover
+{
+    background-color: #1f1f1f;
+}
+
+.navigationBar .navPoints.pointIsActive
+{
+    background-color: #ffffff;
+}
